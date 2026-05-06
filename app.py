@@ -30,7 +30,10 @@ div[data-testid="stToolbar"]{{visibility:hidden}}
 div[data-testid="stMainBlockContainer"]{{padding-top:1rem}}
 .block-container{{padding-top:1rem}}
 .stApp{{background-color:{LGRAY}}}
-.metric-card{{background:{NAVY};border-radius:10px;padding:14px 16px;margin-bottom:8px;border-left:4px solid {TEAL}}}
+.metric-card{{background:{NAVY};border-radius:10px;padding:12px 14px;margin-bottom:8px;border-left:4px solid {TEAL}}}
+.metric-label{{color:{MINT};font-size:11px;font-weight:600;margin-bottom:4px;word-wrap:break-word;white-space:normal;line-height:1.3}}
+.metric-value{{color:{WHITE};font-size:22px;font-weight:700;line-height:1.2}}
+.metric-delta{{color:#a8d8a8;font-size:11px;margin-top:3px}}
 .section-hdr{{background:{NAVY};color:{WHITE};font-size:14px;font-weight:700;padding:6px 14px;border-radius:6px;margin:12px 0 6px;letter-spacing:.5px}}
 .city-hdr-bk{{background:{BK_COL};color:{WHITE};text-align:center;font-size:15px;font-weight:800;padding:6px;border-radius:6px;margin-bottom:8px}}
 .city-hdr-cl{{background:{CL_COL};color:{WHITE};text-align:center;font-size:15px;font-weight:800;padding:6px;border-radius:6px;margin-bottom:8px}}
@@ -174,17 +177,17 @@ cbk,ccl=st.columns(2)
 with cbk:
     st.markdown("<div class='city-hdr-bk'>\U0001f535 BERKELEY \u2014 High-Code</div>",unsafe_allow_html=True)
     m1,m2,m3,m4=st.columns(4)
-    m1.metric("Resilience R",f"{bk['R']*100:.1f}%")
-    m2.metric("Displaced (people)",f"{bk['disp']:.0f}",f"{bk['pct_disp']:.1f}% of pop")
-    m3.metric("Severe Damage (DS\u22653)",f"{bk['pct_ds3']:.1f}%")
-    m4.metric("Economic Loss (USD)",f"${bk['loss']/1e6:.1f}M")
+    m1.markdown(f"<div class='metric-card'><div class='metric-label'>Resilience R</div><div class='metric-value'>{bk['R']*100:.1f}%</div></div>",unsafe_allow_html=True)
+    m2.markdown(f"<div class='metric-card'><div class='metric-label'>Displaced People</div><div class='metric-value'>{bk['disp']:.0f}</div><div class='metric-delta'>{bk['pct_disp']:.1f}% of pop</div></div>",unsafe_allow_html=True)
+    m3.markdown(f"<div class='metric-card'><div class='metric-label'>Severe Damage DS\u22653</div><div class='metric-value'>{bk['pct_ds3']:.1f}%</div></div>",unsafe_allow_html=True)
+    m4.markdown(f"<div class='metric-card'><div class='metric-label'>Economic Loss (USD)</div><div class='metric-value'>${bk['loss']/1e6:.1f}M</div></div>",unsafe_allow_html=True)
 with ccl:
     st.markdown("<div class='city-hdr-cl'>\U0001f534 COALINGA \u2014 Low-Code</div>",unsafe_allow_html=True)
     m1,m2,m3,m4=st.columns(4)
-    m1.metric("Resilience R",f"{cl['R']*100:.1f}%")
-    m2.metric("Displaced (people)",f"{cl['disp']:.0f}",f"{cl['pct_disp']:.1f}% of pop")
-    m3.metric("Severe Damage (DS\u22653)",f"{cl['pct_ds3']:.1f}%")
-    m4.metric("Economic Loss (USD)",f"${cl['loss']/1e6:.1f}M")
+    m1.markdown(f"<div class='metric-card'><div class='metric-label'>Resilience R</div><div class='metric-value'>{cl['R']*100:.1f}%</div></div>",unsafe_allow_html=True)
+    m2.markdown(f"<div class='metric-card'><div class='metric-label'>Displaced People</div><div class='metric-value'>{cl['disp']:.0f}</div><div class='metric-delta'>{cl['pct_disp']:.1f}% of pop</div></div>",unsafe_allow_html=True)
+    m3.markdown(f"<div class='metric-card'><div class='metric-label'>Severe Damage DS\u22653</div><div class='metric-value'>{cl['pct_ds3']:.1f}%</div></div>",unsafe_allow_html=True)
+    m4.markdown(f"<div class='metric-card'><div class='metric-label'>Economic Loss (USD)</div><div class='metric-value'>${cl['loss']/1e6:.1f}M</div></div>",unsafe_allow_html=True)
 
 gap_R=(bk["R"]-cl["R"])*100; gap_d=cl["pct_disp"]-bk["pct_disp"]
 st.markdown(f"<div class='callout-banner'>"
