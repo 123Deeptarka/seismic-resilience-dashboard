@@ -175,16 +175,16 @@ with cbk:
     st.markdown("<div class='city-hdr-bk'>\U0001f535 BERKELEY \u2014 High-Code</div>",unsafe_allow_html=True)
     m1,m2,m3,m4=st.columns(4)
     m1.metric("Resilience R",f"{bk['R']*100:.1f}%")
-    m2.metric("Displaced",f"{bk['disp']:.0f} ppl",f"{bk['pct_disp']:.1f}% of pop")
-    m3.metric("Severe Damage",f"{bk['pct_ds3']:.1f}%","DS\u22653 buildings")
-    m4.metric("Economic Loss",f"${bk['loss']/1e6:.1f}M")
+    m2.metric("Displaced (people)",f"{bk['disp']:.0f}",f"{bk['pct_disp']:.1f}% of pop")
+    m3.metric("Severe Damage (DS\u22653)",f"{bk['pct_ds3']:.1f}%")
+    m4.metric("Economic Loss (USD)",f"${bk['loss']/1e6:.1f}M")
 with ccl:
     st.markdown("<div class='city-hdr-cl'>\U0001f534 COALINGA \u2014 Low-Code</div>",unsafe_allow_html=True)
     m1,m2,m3,m4=st.columns(4)
     m1.metric("Resilience R",f"{cl['R']*100:.1f}%")
-    m2.metric("Displaced",f"{cl['disp']:.0f} ppl",f"{cl['pct_disp']:.1f}% of pop")
-    m3.metric("Severe Damage",f"{cl['pct_ds3']:.1f}%","DS\u22653 buildings")
-    m4.metric("Economic Loss",f"${cl['loss']/1e6:.1f}M")
+    m2.metric("Displaced (people)",f"{cl['disp']:.0f}",f"{cl['pct_disp']:.1f}% of pop")
+    m3.metric("Severe Damage (DS\u22653)",f"{cl['pct_ds3']:.1f}%")
+    m4.metric("Economic Loss (USD)",f"${cl['loss']/1e6:.1f}M")
 
 gap_R=(bk["R"]-cl["R"])*100; gap_d=cl["pct_disp"]-bk["pct_disp"]
 st.markdown(f"<div class='callout-banner'>"
